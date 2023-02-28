@@ -8,13 +8,14 @@ class Project
 {
 private:
 	std::string Projectpath;
+	std::string vulnPath;
 public:
-	Project(std::string ProjectPath);
-	vulnList readVulns(const std::string& VulnsPath); //parses the json file with the vulns into dictionaries, 
+	Project(std::string ProjectPath, std::string vulnsPath);
+	vulnList readVulns(); //parses the json file with the vulns into dictionaries, 
 	// then turns them into vulnerability objects in a vector according to the vuln type
-	vulnList chooseVulns(const vulnList& vulns, bool vulnArr[3]); //algorithm that chooses vulnerabilities that do not collide
+	vulnList chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr); //algorithm that chooses vulnerabilities that do not collide
 	Project createProject(const vulnList& Vulns); //creates the project itself and changes the files to have/not have chosen vulns
-	bool runProject(bool vulnArr[]); //runs the project itself and returns if it ran succesfully or not
+	bool runProject(std::vector<bool> vulnArr); //runs the project itself and returns if it ran succesfully or not
 };
 
 

@@ -50,17 +50,19 @@ END
 // Dialog
 //
 
-IDD_FORM DIALOGEX 350, 160, 309, 176
+IDD_FORM DIALOGEX 350, 160, 326, 260
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Website Vulnerability Form"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Cancel",IDC_CANCEL,252,155,50,14
+    PUSHBUTTON      "Cancel",IDC_CANCEL,252,225,50,14
     CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,139,48
     CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,55,115,34
-    CONTROL         "Unvalidated redirects",IDC_VULN3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,105,125,43
-    PUSHBUTTON      "Create",IDC_BUTTON,188,58,81,43
-    CTEXT           "Chosen vulnerabilities will be protected",IDC_STATIC,125,33,166,25
+    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,105,125,43
+    CONTROL         "Product Tampering", IDC_PRODUCT, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 17, 155, 125, 43
+    CONTROL         "Admin Registration", IDC_ADMIN, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 17, 205, 125, 43
+    PUSHBUTTON      "Create",IDC_BUTTON,188,88,81,43
+    CTEXT           "Chosen vulnerabilities will be protected",IDC_STATIC,125,63,166,25
 END
 
 

@@ -11,7 +11,7 @@ private:
 	int beginChar;
 	int endLine;
 	int endChar;
-	std::vector<std::string> lines; //might change
+	std::vector<std::string> lines;
 
 public:
 	Code();

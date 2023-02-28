@@ -5,10 +5,11 @@
 #define IDD_FORM                        101
 #define IDC_XSS                         1001
 #define IDC_SQLI                        1002
-#define IDC_CHECK3                      1003
-#define IDC_VULN3                       1003
-#define IDC_BUTTON                      1004
-#define IDC_CANCEL                      1005
+#define IDC_UNVALIDATED                 1003
+#define IDC_PRODUCT                     1004
+#define IDC_ADMIN                       1005
+#define IDC_BUTTON                      1006
+#define IDC_CANCEL                      1007
 
 // Next default values for new objects
 // 

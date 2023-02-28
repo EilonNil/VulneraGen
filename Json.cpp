@@ -75,7 +75,7 @@ Code singleCodeGenerator(json code) {
 	int beginChar = code["Begin Char"];
 	int endLine = code["End Line"];
 	int endChar = code["End Char"];
-	std::vector<std::string> lines; //TODO decide if it changes to one string or not and if not then how to add it
+	std::vector<std::string> lines;
 	for (auto& element : code["Code"]) {
 		lines.push_back(element["line"]);
 	}

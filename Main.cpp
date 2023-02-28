@@ -4,9 +4,12 @@
 #include <iostream>
 bool xss = false;
 bool sqlI = false;
-bool vuln3 = false;
+bool unvalidated = false;
+bool product = false;
+bool admin = false;
 std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master";
-//std::string path = "C:\\Users\\Eilon\\Downloads\\juice-shop-master\\juice-shop-master";
+//std::string path = "C:\\Users\\Eilon\\Downloads\\juice-shop-master\\juice-shop-master"; //secondary path
+std::string vulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json";
 
 
 LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -23,28 +26,30 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             sqlI = sqlI ^ 1;
             break;
         }
-        case IDC_VULN3: {
-            vuln3 = vuln3 ^ 1;
+        case IDC_UNVALIDATED: {
+            unvalidated = unvalidated ^ 1;
+            break;
+        }
+        case IDC_PRODUCT: {
+            product = product ^ 1;
+            break;
+        }
+        case IDC_ADMIN: {
+            admin = admin ^ 1;
             break;
         }
         case IDC_BUTTON:
         {
-            bool chosenVulns[3];
-            chosenVulns[0] = xss;
-            chosenVulns[1] = sqlI;
-            chosenVulns[2] = vuln3;
-            Project project(path);
-            vulnList vlns = project.readVulns("C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json");
+            std::vector<bool> chosenVulns;
+            chosenVulns.push_back(xss);
+            chosenVulns.push_back(sqlI);
+            chosenVulns.push_back(unvalidated);
+            chosenVulns.push_back(product);
+            chosenVulns.push_back(admin);
+            Project project(path, vulnsPath);
+            vulnList vlns = project.readVulns();
             project.runProject(chosenVulns);
             PostQuitMessage(0);
-            /*char trues[50] = "trues: ";
-            char xss2[] = "xss ";
-            char sqli2[] = "sqli ";
-            char vuln32[] = "vuln3 ";
-            if (xss) strcat_s(trues, xss2);
-            if (sqlI) strcat_s(trues, sqli2);
-            if (vuln3) strcat_s(trues, vuln32);
-            MessageBox(hwnd, trues, "Warning", MB_OK);*/
             break;
         }
         case IDC_CANCEL:
