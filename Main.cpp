@@ -47,8 +47,8 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             chosenVulns.push_back(product);
             chosenVulns.push_back(admin);
             Project project(path, vulnsPath);
-            vulnList vlns = project.readVulns();
-            project.runProject(chosenVulns);
+            //vulnList vlns = project.readVulns();
+            bool success = project.runProject(chosenVulns);
             PostQuitMessage(0);
             break;
         }

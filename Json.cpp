@@ -70,7 +70,9 @@ codeList codesGenerator(json codes) {
 }
 
 Code singleCodeGenerator(json code) {
+	std::string basePath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\";
 	std::string filePath = code["File Path"];
+	std::string fullPath = basePath + filePath;
 	int beginLine = code["Begin Line"];
 	int beginChar = code["Begin Char"];
 	int endLine = code["End Line"];
@@ -79,7 +81,7 @@ Code singleCodeGenerator(json code) {
 	for (auto& element : code["Code"]) {
 		lines.push_back(element["line"]);
 	}
-	Code ret(filePath, beginLine, beginChar, endLine, endChar, lines);
+	Code ret(fullPath, beginLine, beginChar, endLine, endChar, lines);
 	return ret;
 }
 
