@@ -49,7 +49,9 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             Project project(path, vulnsPath);
             //vulnList vlns = project.readVulns();
             bool success = project.runProject(chosenVulns);
-            PostQuitMessage(0);
+            //PostQuitMessage(0);
+
+            DestroyWindow(hwnd);
             break;
         }
         case IDC_CANCEL:

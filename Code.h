@@ -18,7 +18,9 @@ public:
 	Code(const std::string filePath, const int beginLine, const int beginChar, const int endLine, const int endChar, const std::vector<std::string> lines);
 	Code(const Code& other);
 	const Code& operator=(const Code& other);
-	~Code();
 	bool changeCode();
+	std::string getFilePath();
+	~Code();
+	
 };
 

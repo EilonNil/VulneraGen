@@ -7,14 +7,13 @@ Project::Project(std::string ProjectPath, std::string vulnPath) {
 
 bool Project::runProject(std::vector<bool> vulnArr) {
 	vulnList vulns = readVulns();
-	//std::string npmInstall = "cd " + this->Projectpath + " & npm install";
-	//std::system(npmInstall.c_str());
 	bool success = createProject(chooseVulns(vulns, vulnArr));
 	if (!success) {
 		return false;
 	}
 	std::string command = "cd " + this->Projectpath + " & npm start";
 	std::system(command.c_str());
+//TODO: add the changing of files back to the original and delete .jsold files
 	return true;
 }
 

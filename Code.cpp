@@ -36,46 +36,12 @@ Code::~Code() {
 	
 }
 
+std::string Code::getFilePath() {
+	return this->filePath;
+}
+
 bool Code::changeCode()
 {
-	/*std::fstream oFile;
-	std::fstream iFile;
-
-	iFile.open(this->filePath, std::ios::in);
-	if (iFile.is_open()) {
-		std::vector<std::string> lines;
-		std::string line;
-		while (std::getline(iFile, line)) {
-			lines.push_back(line);
-		}
-		iFile.close();
-		oFile.open(this->filePath, std::ios::out);
-		for (int i = 0; i < lines.size(); i++) {
-			if (i >= this->beginLine-1 && i <= this->endLine-1) {
-				for (int j = 0; j < this->lines.size(); j++) {
-					if (i != lines.size() - 1) {
-						oFile << this->lines[j] << std::endl;
-					}
-					else {
-						oFile << this->lines[j];
-					}
-				}
-				i = this->endLine-1;
-			}
-			else {
-				if (i != lines.size() - 1) {
-					oFile << lines[i] << std::endl;
-				}
-				else {
-					oFile << lines[i];
-				}
-			}
-		}
-		oFile.close();
-	}
-	else {
-		return false;
-	}*/
 	std::ifstream file(this->filePath);
 	std::vector<std::string> lines;
 	std::string line;
