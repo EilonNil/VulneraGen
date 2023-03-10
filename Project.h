@@ -14,9 +14,14 @@ public:
 	vulnList readVulns(); //parses the json file with the vulns into dictionaries, 
 	// then turns them into vulnerability objects in a vector according to the vuln type
 	vulnList chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr); //algorithm that chooses vulnerabilities that do not collide
-	bool createProject(const vulnList& ulns); //creates the project itself and changes the files to have/not have chosen vulns
+	bool createProject(const vulnList& vulns); //creates the project itself and changes the files to have/not have chosen vulns
 	bool runProject(std::vector<bool> vulnArr); //runs the project itself and returns if it ran succesfully or not
+	bool changeBack(const vulnList& vulns);
+	void deleteFiles(const strList& paths);
+	void deleteFile(std::string path);
 };
+
+
 
 
 // submit button pressed -> 
