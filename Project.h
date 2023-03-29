@@ -17,8 +17,6 @@ public:
 	bool createProject(const vulnList& vulns); //creates the project itself and changes the files to have/not have chosen vulns
 	bool runProject(std::vector<bool> vulnArr); //runs the project itself and returns if it ran succesfully or not
 	bool changeBack(const vulnList& vulns);
-	void deleteFiles(const strList& paths);
-	void deleteFile(std::string path);
 };
 
 

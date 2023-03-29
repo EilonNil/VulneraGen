@@ -15,6 +15,9 @@ bool Project::runProject(std::vector<bool> vulnArr) {
 	std::string command = "cd " + this->Projectpath + " & npm start";
 	std::system(command.c_str());
 	bool changeSucess = changeBack(chosenVulns);
+	if (!changeSucess) {
+		return false;
+	}
 	return true;
 }
 
@@ -47,32 +50,22 @@ bool Project::createProject(const vulnList& vulns)
 }
 
 bool Project::changeBack(const vulnList& vulns) {
-	std::vector<strList> list;
+	std::vector<strList> list2D;
 	for (auto vuln : vulns) {
-		list.push_back(vuln.getUniquePaths());
+		list2D.push_back(vuln.getUniquePaths());
 	}
+	strList list = makeUnique(makeOneDimensional(list2D));
 
-	std::vector<strList> oldList = list;
+	strList oldList = list;
 	for (int i = 0; i < oldList.size(); i++) {
-		for (int j = 0; j < oldList[i].size(); j++) {
-			oldList[i][j] = oldList[i][j] + "old";
-			bool success = moveCode(list[i][j], oldList[i][j]);
-			if (!success) {
-				return false;
-			}
+		oldList[i] = oldList[i] + "old";
+		bool success = moveCode(list[i], oldList[i]);
+		if (!success) {
+			return false;
 		}
-		deleteFiles(oldList[i]);
 	}
+	deleteFiles(oldList);
+
 	return true;
 }
 
-void Project::deleteFiles(const strList& paths) {
-	for (auto path : paths) {
-		deleteFile(path);
-	}
-}
-
-void Project::deleteFile(std::string path) {
-	std::string command = "del " + path;
-	std::system(command.c_str());
-}
