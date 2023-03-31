@@ -1,4 +1,5 @@
 #pragma once
+#include <Windows.h>
 #include "Code.h"
 typedef std::vector<std::string> strList;
 
@@ -10,3 +11,4 @@ void deleteFiles(const strList& paths);
 void deleteFile(std::string path);
 strList makeUnique(const strList& list);
 strList makeOneDimensional(const std::vector<strList>& lists);
+

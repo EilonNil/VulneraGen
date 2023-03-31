@@ -67,3 +67,4 @@ strList makeOneDimensional(const std::vector<strList>& lists) {
 
 	return ret;
 }
+

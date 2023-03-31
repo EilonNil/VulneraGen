@@ -10,6 +10,7 @@ bool admin = false;
 std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master";
 //std::string path = "C:\\Users\\Eilon\\Downloads\\juice-shop-master\\juice-shop-master"; //secondary path
 std::string vulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json";
+std::string dllPath = "C:\\Users\\Eilon\\source\\repos\\FinalProjectYudBet\\x64\\Debug\\Dll.dll";
 
 
 LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -40,6 +41,8 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         case IDC_BUTTON:
         {
+            printNotepadMsg(dllPath, "printing");
+
             std::vector<bool> chosenVulns;
             chosenVulns.push_back(xss);
             chosenVulns.push_back(sqlI);
@@ -51,11 +54,19 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             bool success = project.runProject(chosenVulns);
             //PostQuitMessage(0);
 
+
             DestroyWindow(hwnd);
             break;
         }
         case IDC_CANCEL:
         {
+            //close notepad
+            HWND notepadHandle = FindWindow(NULL, "Untitled - Notepad");
+            if (notepadHandle == NULL) {
+                notepadHandle = FindWindow(NULL, "*Untitled - Notepad");
+            }
+            PostMessage(notepadHandle, WM_CLOSE, 0, 0);
+            
             DestroyWindow(hwnd);
             break;
         }
@@ -76,5 +87,6 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpCmdLine, int nCmdShow)
 {
+    connectDLL(dllPath);
     return DialogBox(hInstance, MAKEINTRESOURCE(IDD_FORM), NULL, DlgProc);
 }

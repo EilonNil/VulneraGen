@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include "NotepadUtils.h"
 class Code
 {
 private:
