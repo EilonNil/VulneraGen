@@ -4,3 +4,4 @@
 
 void connectDLL(std::string dllPath);
 void printNotepadMsg(std::string dllPath, std::string message);
+std::string getDLLPath();

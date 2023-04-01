@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include "NotepadUtils.h"
+typedef std::vector<std::string> strList;
 class Code
 {
 private:
@@ -21,6 +22,7 @@ public:
 	const Code& operator=(const Code& other);
 	bool changeCode();
 	std::string getFilePath();
+	strList codeToLst();
 	~Code();
 	
 };

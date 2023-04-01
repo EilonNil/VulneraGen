@@ -18,6 +18,7 @@ bool Project::runProject(std::vector<bool> vulnArr) {
 	if (!changeSucess) {
 		return false;
 	}
+	websiteClosed();
 	return true;
 }
 
@@ -33,8 +34,16 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 	for (int i = 0; i < vulnArr.size(); i++) {
 		if (vulnArr[i]) {
 			retVulns.push_back(vulns[i]);
+			printVuln(vulns[i]);
 		}
 	}
+	if (retVulns.size() != 0) {
+		finishedScan();
+	}
+	else {
+		noVulns();
+	}
+
 	return retVulns;
 }
 

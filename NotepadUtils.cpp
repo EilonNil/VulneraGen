@@ -60,3 +60,8 @@ void printNotepadMsg(std::string dllPath, std::string message) {
 	// Free the DLL from memory
 	FreeLibrary(hDLL);
 }
+
+std::string getDLLPath() {
+    std::string path = "C:\\Users\\Eilon\\source\\repos\\FinalProjectYudBet\\x64\\Debug\\Dll.dll";
+    return path;
+}
