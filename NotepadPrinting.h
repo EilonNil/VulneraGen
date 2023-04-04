@@ -7,3 +7,4 @@ void printVuln(Vulnerability vuln);
 void finishedScan();
 void noVulns();
 void websiteClosed();
+void printError(std::string error);

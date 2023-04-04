@@ -1,6 +1,7 @@
 #include <Windows.h>
 #include "resource.h"
 #include "Project.h"
+#include "UserVulnerability.h"
 #include <iostream>
 bool xss = false;
 bool sqlI = false;
@@ -11,6 +12,9 @@ std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-
 //std::string path = "C:\\Users\\Eilon\\Downloads\\juice-shop-master\\juice-shop-master"; //secondary path
 std::string vulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json";
 //std::string dllPath = "C:\\Users\\Eilon\\source\\repos\\FinalProjectYudBet\\x64\\Debug\\Dll.dll";
+std::vector<std::string> linesOfCode;
+std::vector<Code> codes;
+std::vector<Vulnerability> newVulns;
 
 
 LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
@@ -49,13 +53,35 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             chosenVulns.push_back(unvalidated);
             chosenVulns.push_back(product);
             chosenVulns.push_back(admin);
-            Project project(path, vulnsPath);
+            Project project(path, vulnsPath, newVulns);
             //vulnList vlns = project.readVulns();
             bool success = project.runProject(chosenVulns);
             //PostQuitMessage(0);
 
 
             DestroyWindow(hwnd);
+            break;
+        }
+        case IDC_CODEBTN:
+        {
+            std::string line = getEditString(hwnd, IDC_CODE);
+            linesOfCode.push_back(line);
+            break;
+        }
+        case IDC_NEWCODE:
+        {
+            Code code = getEditCode(hwnd, linesOfCode);
+            if (code.getFilePath() != "null") {
+                codes.push_back(code);
+            }
+            break;
+        }
+        case IDC_NEWVULN:
+        {
+            Vulnerability vuln = getEditVuln(hwnd, codes);
+            if (vuln.getCodes().size() != 0) {
+                newVulns.push_back(vuln);
+            }
             break;
         }
         case IDC_CANCEL:

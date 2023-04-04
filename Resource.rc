@@ -50,19 +50,43 @@ END
 // Dialog
 //
 
-IDD_FORM DIALOGEX 350, 160, 326, 260
+IDD_FORM DIALOGEX 350, 160, 501, 246
 STYLE DS_SETFONT | DS_MODALFRAME | DS_FIXEDSYS | WS_POPUP | WS_CAPTION | WS_SYSMENU
 CAPTION "Website Vulnerability Form"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
-    PUSHBUTTON      "Cancel",IDC_CANCEL,252,225,50,14
-    CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,139,48
-    CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,19,55,115,34
-    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,105,125,43
-    CONTROL         "Product Tampering", IDC_PRODUCT, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 17, 155, 125, 43
-    CONTROL         "Admin Registration", IDC_ADMIN, "Button", BS_AUTOCHECKBOX | WS_TABSTOP, 17, 205, 125, 43
-    PUSHBUTTON      "Create",IDC_BUTTON,188,88,81,43
-    CTEXT           "Chosen vulnerabilities will be protected",IDC_STATIC,125,63,166,25
+    PUSHBUTTON      "Cancel",IDC_CANCEL,440,229,50,14
+    CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,91,43
+    CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,55,89,43
+    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,103,100,43
+    CONTROL         "Product Tampering",IDC_PRODUCT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,151,96,43
+    CONTROL         "Admin Registration",IDC_ADMIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,199,88,43
+    PUSHBUTTON      "Create website",IDC_BUTTON,377,177,81,43
+    CTEXT           "Chosen vulnerabilities will be protected",IDC_STATIC,336,163,154,11
+    EDITTEXT        IDC_VULNNAME,357,53,106,17,ES_AUTOHSCROLL
+    EDITTEXT        IDC_PATH,209,41,106,17,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BEGINLINE,209,67,106,17,ES_AUTOHSCROLL
+    EDITTEXT        IDC_BEGINCHAR,209,93,106,17,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ENDLINE,209,119,106,17,ES_AUTOHSCROLL
+    EDITTEXT        IDC_ENDCHAR,209,145,106,17,ES_AUTOHSCROLL
+    EDITTEXT        IDC_CODE,158,171,106,17,ES_AUTOHSCROLL
+    LTEXT           "Create your own vulnerability",IDC_STATIC,151,25,107,8
+    LTEXT           "File path",IDC_STATIC,121,42,65,13
+    LTEXT           "Start line",IDC_STATIC,121,71,65,13
+    LTEXT           "End line",IDC_STATIC,121,129,65,13
+    LTEXT           "Start char (0 is from the beggining)",IDC_STATIC,121,100,80,16
+    LTEXT           "End char (0 is whole line)",IDC_STATIC,121,151,81,13
+    PUSHBUTTON      "Create new Code object",IDC_NEWCODE,177,201,84,32
+    LTEXT           "Vulnerability name",IDC_STATIC,375,31,65,13
+    LTEXT           "Code",IDC_STATIC,121,175,34,13
+    PUSHBUTTON      "Create Vulnerabilitiy (will use all the code objects previously created)",IDC_NEWVULN,357,86,102,44,BS_MULTILINE
+    PUSHBUTTON      "Add code line",IDC_CODEBTN,270,168,47,21
+    LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,105,9,8,234
+    LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,105,7,385,8
+    LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,484,16,8,139
+    LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,332,149,158,9
+    LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,332,149,8,94
+    LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,104,234,233,9
 END
 
 
@@ -77,9 +101,9 @@ BEGIN
     IDD_FORM, DIALOG
     BEGIN
         LEFTMARGIN, 7
-        RIGHTMARGIN, 302
+        RIGHTMARGIN, 490
         TOPMARGIN, 7
-        BOTTOMMARGIN, 169
+        BOTTOMMARGIN, 243
     END
 END
 #endif    // APSTUDIO_INVOKED

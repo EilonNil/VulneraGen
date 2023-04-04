@@ -39,6 +39,9 @@
     <ClCompile Include="NotepadPrinting.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="UserVulnerabilitiy.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Vulnerability.h">
@@ -63,6 +66,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="NotepadPrinting.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UserVulnerability.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

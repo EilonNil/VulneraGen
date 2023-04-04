@@ -1,6 +1,5 @@
 #pragma once
 #include "Json.h"
-#include "Vulnerability.h"
 #include "NotepadPrinting.h"
 typedef std::vector<Vulnerability> vulnList;
 typedef std::vector<std::string> strList;
@@ -10,8 +9,9 @@ class Project
 private:
 	std::string Projectpath;
 	std::string vulnPath;
+	vulnList newVulns;
 public:
-	Project(std::string ProjectPath, std::string vulnsPath);
+	Project(const std::string& ProjectPath, const std::string& vulnsPath, const vulnList& newVulns);
 	vulnList readVulns(); //parses the json file with the vulns into dictionaries, 
 	// then turns them into vulnerability objects in a vector according to the vuln type
 	vulnList chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr); //algorithm that chooses vulnerabilities that do not collide

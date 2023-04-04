@@ -3,6 +3,7 @@
 #include <vector>
 #include <fstream>
 #include <sstream>
+#include <string>
 #include "NotepadUtils.h"
 typedef std::vector<std::string> strList;
 class Code
@@ -24,6 +25,6 @@ public:
 	std::string getFilePath();
 	strList codeToLst();
 	~Code();
-	
+	friend bool isCodeValid(Code code);
 };
 

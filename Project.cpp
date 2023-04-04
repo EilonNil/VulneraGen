@@ -1,8 +1,9 @@
 #include "Project.h"
 
-Project::Project(std::string ProjectPath, std::string vulnPath) {
+Project::Project(const std::string& ProjectPath, const std::string& vulnsPath, const vulnList& newVulns) {
 	this->Projectpath = ProjectPath;
 	this->vulnPath = vulnPath;
+	this->newVulns = newVulns;
 }
 
 bool Project::runProject(std::vector<bool> vulnArr) {
@@ -37,6 +38,11 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 			printVuln(vulns[i]);
 		}
 	}
+	for (auto item : this->newVulns) {
+		retVulns.push_back(item);
+		printVuln(item);
+	}
+
 	if (retVulns.size() != 0) {
 		finishedScan();
 	}

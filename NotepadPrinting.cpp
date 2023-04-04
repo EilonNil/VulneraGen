@@ -49,3 +49,8 @@ void websiteClosed() {
 	printNotepadMsg(getDLLPath(), message);
 	Sleep(123);
 }
+
+void printError(std::string error) {
+	std::string message = error + "\n";
+	printNotepadMsg(getDLLPath(), message);
+}

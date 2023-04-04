@@ -135,6 +135,7 @@
     <ClCompile Include="NotepadPrinting.cpp" />
     <ClCompile Include="NotepadUtils.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="UserVulnerabilitiy.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Vulnerability.cpp" />
   </ItemGroup>
@@ -145,6 +146,7 @@
     <ClInclude Include="NotepadUtils.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Project.h" />
+    <ClInclude Include="UserVulnerability.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vulnerability.h" />
   </ItemGroup>
