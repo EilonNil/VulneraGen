@@ -6,6 +6,7 @@
 #include <string>
 #include "NotepadUtils.h"
 typedef std::vector<std::string> strList;
+
 class Code
 {
 private:
@@ -14,7 +15,7 @@ private:
 	int beginChar;
 	int endLine;
 	int endChar;
-	std::vector<std::string> lines;
+	strList lines;
 
 public:
 	Code();

@@ -12,9 +12,9 @@ std::string getEditString(HWND hwnd, int item) {
 int getEditInt(HWND hwnd, int item) {
     std::string line = getEditString(hwnd, item);
     return atoi(line.c_str());
-}//maybe use stoi and catch exception insead cuz 0 can be valid but not what was wanted?
+}
 
-Code getEditCode(HWND hwnd, std::vector<std::string> lines) {
+Code getEditCode(HWND hwnd, strList lines) {
     std::string filePath = getEditString(hwnd, IDC_PATH);
     int beginLine = getEditInt(hwnd, IDC_BEGINLINE);
     int beginChar = getEditInt(hwnd, IDC_BEGINCHAR);
@@ -61,10 +61,14 @@ bool isCodeValid(Code code) {
         valid = false;
         printError("Replacing code cannot be empty. To add an empty line add an empty string");
     }
+    if ((code.endLine - code.beginLine + 1) != code.lines.size()) {
+        valid = false;
+        printError("Number of lines added and number of lines removed need to be matched");
+    }
     return valid;
 }
 
-Vulnerability getEditVuln(HWND hwnd, std::vector<Code> codes) {
+Vulnerability getEditVuln(HWND hwnd, codeList codes) {
     std::string name = getEditString(hwnd, IDC_VULNNAME);
     if (codes.size() == 0) {
         printError("Cannot create a vulnerability without code objects");

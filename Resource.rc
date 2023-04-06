@@ -56,11 +56,11 @@ CAPTION "Website Vulnerability Form"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     PUSHBUTTON      "Cancel",IDC_CANCEL,440,229,50,14
-    CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,91,43
-    CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,55,89,43
-    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,103,100,43
-    CONTROL         "Product Tampering",IDC_PRODUCT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,151,96,43
-    CONTROL         "Admin Registration",IDC_ADMIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,199,88,43
+    CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,82,43
+    CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,55,84,43
+    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,103,80,43
+    CONTROL         "Product Tampering",IDC_PRODUCT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,151,80,43
+    CONTROL         "Admin Registration",IDC_ADMIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,199,77,43
     PUSHBUTTON      "Create website",IDC_BUTTON,377,177,81,43
     CTEXT           "Chosen vulnerabilities will be protected",IDC_STATIC,336,163,154,11
     EDITTEXT        IDC_VULNNAME,357,53,106,17,ES_AUTOHSCROLL
@@ -85,7 +85,7 @@ BEGIN
     LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,105,7,385,8
     LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,484,16,8,139
     LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,332,149,158,9
-    LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,332,149,8,94
+    LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,332,155,8,88
     LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,104,234,233,9
 END
 

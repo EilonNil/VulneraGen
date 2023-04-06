@@ -58,7 +58,7 @@ bool Code::changeCode()
 
 	int thisLinesCount = 0;
 	if (beginChar != 0 && endLine == beginLine) { //doesnt change the whole line but only changes one line
-		if (endChar == 0) { // changes until the end of the line
+		if (endChar == 0) {						  // changes until the end of the line
 			lines[beginLine - 1].replace(this->beginChar, lines[beginLine - 1].size() - beginChar, this->lines[0]);
 		}
 		else { // dont change the whole line
@@ -66,7 +66,7 @@ bool Code::changeCode()
 		}
 	}
 	else if (beginChar == 0 && endLine == beginLine) { //changes only the first line and fully
-		if (endChar == 0) { // changes until the end of the line
+		if (endChar == 0) {							   // changes until the end of the line
 			lines[beginLine - 1].replace(0, lines[beginLine - 1].size(), this->lines[0]);
 		}
 		else { // dont change the whole line
@@ -107,7 +107,7 @@ bool Code::changeCode()
 
 	std::ofstream output(this->filePath);
 	if (output.is_open()) {
-		for (const std::string& line : lines) {
+		for (auto line : lines) {
 			output << line << '\n';
 		}
 		output.close();
@@ -115,8 +115,6 @@ bool Code::changeCode()
 	else {
 		return false;
 	}
-	
-
 	return true;
 }
 

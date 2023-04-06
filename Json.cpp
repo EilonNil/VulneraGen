@@ -7,7 +7,7 @@ vulnList convert(const std::string& vulnsPath) {
 
 	json data = json::parse(file);
 
-	for (auto& element : data["Vulnerabilities"]) {
+	for (auto element : data["Vulnerabilities"]) {
 		json vuln = element;
 		retList.push_back(vulnGenerator(vuln));
 	}
@@ -16,7 +16,7 @@ vulnList convert(const std::string& vulnsPath) {
 
 codeList codesGenerator(json codes) {
 	codeList ret;
-	for (auto& element : codes) {
+	for (auto element : codes) {
 		json code = element;
 		ret.push_back(singleCodeGenerator(code));
 	}
@@ -32,7 +32,7 @@ Code singleCodeGenerator(json code) {
 	int endLine = code["End Line"];
 	int endChar = code["End Char"];
 	std::vector<std::string> lines;
-	for (auto& element : code["Code"]) {
+	for (auto element : code["Code"]) {
 		lines.push_back(element["line"]);
 	}
 	Code ret(fullPath, beginLine, beginChar, endLine, endChar, lines);
