@@ -1,4 +1,4 @@
-#include <Windows.h>
+#include "Tooltip.h"
 #include "resource.h"
 #include "Project.h"
 #include "UserVulnerability.h"
@@ -21,6 +21,14 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 {
     switch (msg)
     {
+    case WM_INITDIALOG:
+    {
+        Tooltip vulnButton(hwnd, IDC_NEWVULN, "Use all the code objects created since last click");
+        Tooltip codeButton(hwnd, IDC_NEWCODE, "Create a code object using all code lines since last click and other parameters");
+        Tooltip addCodeButton(hwnd, IDC_CODEBTN, "will add to the list of code lines that will be used to create next code object");
+        Tooltip createButtom(hwnd, IDC_BUTTON, "Create the website with chosen and user-added vulnerabilities protected");
+    }
+    break;
     case WM_COMMAND:
         switch (LOWORD(wParam)) {
         case IDC_XSS: {

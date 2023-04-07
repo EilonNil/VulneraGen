@@ -8,6 +8,10 @@ Project::Project(const std::string& ProjectPath, const std::string& vulnsPath, c
 
 bool Project::runProject(std::vector<bool> vulnArr) {
 	vulnList vulns = readVulns();
+  	bool initSuccess = initalize(vulns);
+	if (!initSuccess) {
+		return false;
+	}
 	vulnList chosenVulns = chooseVulns(vulns, vulnArr);
 	bool success = createProject(chosenVulns);
 	if (!success) {
@@ -84,3 +88,21 @@ bool Project::changeBack(const vulnList& vulns) {
 	return true;
 }
 
+bool Project::initalize(const vulnList& vulns) {
+	vulnList uninitalizedList;
+	bool unintialized = false;
+	for (auto vuln : vulns) {
+		for (auto code : vuln.getCodes()) {
+			std::string oldPath = code.getFilePath() + "old";
+			if (doesExist(oldPath)) {
+				unintialized = true;
+			}
+		}
+		if (unintialized) {
+			uninitalizedList.push_back(vuln);
+		}
+		unintialized = false;
+	}
+	bool success = changeBack(uninitalizedList);
+	return success;
+}

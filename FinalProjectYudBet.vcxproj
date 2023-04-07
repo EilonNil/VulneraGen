@@ -109,6 +109,7 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
@@ -126,6 +127,7 @@
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
       <OptimizeReferences>true</OptimizeReferences>
       <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalDependencies>Comctl32.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -135,6 +137,7 @@
     <ClCompile Include="NotepadPrinting.cpp" />
     <ClCompile Include="NotepadUtils.cpp" />
     <ClCompile Include="Project.cpp" />
+    <ClCompile Include="Tooltip.cpp" />
     <ClCompile Include="UserVulnerabilitiy.cpp" />
     <ClCompile Include="Utils.cpp" />
     <ClCompile Include="Vulnerability.cpp" />
@@ -146,6 +149,7 @@
     <ClInclude Include="NotepadUtils.h" />
     <ClInclude Include="Resource.h" />
     <ClInclude Include="Project.h" />
+    <ClInclude Include="Tooltip.h" />
     <ClInclude Include="UserVulnerability.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vulnerability.h" />

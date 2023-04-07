@@ -18,5 +18,6 @@ public:
 	bool createProject(const vulnList& vulns);
 	bool runProject(std::vector<bool> vulnArr);
 	bool changeBack(const vulnList& vulns);
+	bool initalize(const vulnList& vulns);
 };
 

@@ -56,11 +56,11 @@ CAPTION "Website Vulnerability Form"
 FONT 8, "MS Shell Dlg", 400, 0, 0x1
 BEGIN
     PUSHBUTTON      "Cancel",IDC_CANCEL,440,229,50,14
-    CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,7,82,43
-    CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,55,84,43
-    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,103,80,43
-    CONTROL         "Product Tampering",IDC_PRODUCT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,151,80,43
-    CONTROL         "Admin Registration",IDC_ADMIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,199,77,43
+    CONTROL         "XSS",IDC_XSS,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,27,80,43
+    CONTROL         "SQL Injection",IDC_SQLI,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,67,80,43
+    CONTROL         "Unvalidated redirects",IDC_UNVALIDATED,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,107,80,43
+    CONTROL         "Product Tampering",IDC_PRODUCT,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,147,80,43
+    CONTROL         "Admin Registration",IDC_ADMIN,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,17,187,80,43
     PUSHBUTTON      "Create website",IDC_BUTTON,377,177,81,43
     CTEXT           "Chosen vulnerabilities will be protected",IDC_STATIC,336,163,154,11
     EDITTEXT        IDC_VULNNAME,357,53,106,17,ES_AUTOHSCROLL
@@ -70,7 +70,7 @@ BEGIN
     EDITTEXT        IDC_ENDLINE,209,119,106,17,ES_AUTOHSCROLL
     EDITTEXT        IDC_ENDCHAR,209,145,106,17,ES_AUTOHSCROLL
     EDITTEXT        IDC_CODE,158,171,106,17,ES_AUTOHSCROLL
-    LTEXT           "Create your own vulnerability",IDC_STATIC,151,25,107,8
+    LTEXT           "Create your own vulnerability to protect",IDC_STATIC,145,26,135,8
     LTEXT           "File path",IDC_STATIC,121,42,65,13
     LTEXT           "Start line",IDC_STATIC,121,71,65,13
     LTEXT           "End line",IDC_STATIC,121,129,65,13
@@ -79,7 +79,7 @@ BEGIN
     PUSHBUTTON      "Create new Code object",IDC_NEWCODE,177,201,84,32
     LTEXT           "Vulnerability name",IDC_STATIC,375,31,65,13
     LTEXT           "Code",IDC_STATIC,121,175,34,13
-    PUSHBUTTON      "Create Vulnerabilitiy (will use all the code objects previously created)",IDC_NEWVULN,357,86,102,44,BS_MULTILINE
+    PUSHBUTTON      "Create Vulnerabilitiy",IDC_NEWVULN,357,86,102,44,BS_MULTILINE
     PUSHBUTTON      "Add code line",IDC_CODEBTN,270,168,47,21
     LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,105,9,8,234
     LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,105,7,385,8
@@ -87,6 +87,7 @@ BEGIN
     LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,332,149,158,9
     LTEXT           "|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n|\n",IDC_STATIC,332,155,8,88
     LTEXT           "----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------",IDC_STATIC,104,234,233,9
+    LTEXT           "Preset vulnerabilities to protect",IDC_STATIC,2,16,101,9
 END
 
 
@@ -100,7 +101,7 @@ GUIDELINES DESIGNINFO
 BEGIN
     IDD_FORM, DIALOG
     BEGIN
-        LEFTMARGIN, 7
+        LEFTMARGIN, 2
         RIGHTMARGIN, 490
         TOPMARGIN, 7
         BOTTOMMARGIN, 243
