@@ -39,12 +39,13 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 	for (int i = 0; i < vulnArr.size(); i++) {
 		if (vulnArr[i]) {
 			retVulns.push_back(vulns[i]);
-			printVuln(vulns[i]);
+			Vulnerability vuln = vulns[i];
+			printVuln(vuln.toString());
 		}
 	}
 	for (auto item : this->newVulns) {
 		retVulns.push_back(item);
-		printVuln(item);
+		printVuln(item.toString());
 	}
 
 	if (retVulns.size() != 0) {

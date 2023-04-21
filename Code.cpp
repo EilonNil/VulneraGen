@@ -52,6 +52,7 @@ bool Code::changeCode()
 		file.close();
 	}
 	else {
+		printError("ERROR: cannot open file " + this->filePath + " for reading");
 		return false;
 	}
 	
@@ -113,6 +114,7 @@ bool Code::changeCode()
 		output.close();
 	}
 	else {
+		printError("ERROR: cannot open file " + this->filePath + " for writing");
 		return false;
 	}
 	return true;

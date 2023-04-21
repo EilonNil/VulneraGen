@@ -1,6 +1,4 @@
 #include "Tooltip.h"
-#include "resource.h"
-#include "Project.h"
 #include "UserVulnerability.h"
 #include <iostream>
 bool xss = false;

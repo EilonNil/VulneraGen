@@ -4,7 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <string>
-#include "NotepadUtils.h"
+#include "NotepadPrinting.h"
 typedef std::vector<std::string> strList;
 
 class Code

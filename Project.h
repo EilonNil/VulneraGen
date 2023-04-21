@@ -1,6 +1,5 @@
 #pragma once
 #include "Json.h"
-#include "NotepadPrinting.h"
 typedef std::vector<Vulnerability> vulnList;
 typedef std::vector<std::string> strList;
 typedef std::vector<Code> codeList;

@@ -24,6 +24,7 @@ bool moveCode(std::string to, std::string from)
 		toFile.close();
 	}
 	else {
+		printError("ERROR: cannot open file " + from + " for reading");
 		return false;
 	}
 	return true;

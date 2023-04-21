@@ -11,18 +11,8 @@ void printIntro() {
 	}
 }
 
-void printVuln(Vulnerability vuln) {
-	std::vector<strList> attributes = vuln.vulnToLst();
-	std::string message = "found vulnerability " + vuln.getName();
-	message += " in files:\n";
-	for (auto item : attributes) {
-		message += item[0];
-		message += " line " + item[1];
-		if (item[2] != "0") {
-			message += " beggining at char " + item[2];
-		}
-		message += "\n";
-	}
+void printVuln(std::string vuln) {
+	std::string message = vuln;
 	printNotepadMsg(getDLLPath(), message);
 	std::string fixing = "fixing...\n";
 	std::string fixed = "fixed!\n";
