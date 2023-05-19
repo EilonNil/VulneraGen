@@ -4,6 +4,7 @@
 #include <tchar.h>
 #include <iostream>
 #include <atlbase.h>
+#include "resource.h"
 class Tooltip
 {
 private:
@@ -11,8 +12,10 @@ private:
 	int ID;
 	std::string message;
 public:
-	Tooltip(const HWND hwnd, const int ID, const std::string message);
+	Tooltip(const HWND& hwnd, const int& ID, const std::string& message);
 	void create();
 	~Tooltip();
 };
+
+void initiate(HWND hwnd);
 

@@ -1,10 +1,12 @@
 #include "UserVulnerability.h"
 
 std::string getEditString(HWND hwnd, int item) {
-    HWND edit = GetDlgItem(hwnd, item);
+    HWND edit = GetDlgItem(hwnd, item); 
+    //get edit box HWND.
     char buf[1024];
     GetWindowText(edit, buf, 1024);
-    SetWindowText(edit, "");
+    SetWindowText(edit, ""); 
+    //clear the window text.
     std::string line = buf;
     return line;
 }
@@ -12,6 +14,7 @@ std::string getEditString(HWND hwnd, int item) {
 int getEditInt(HWND hwnd, int item) {
     std::string line = getEditString(hwnd, item);
     return atoi(line.c_str());
+    //function that converts string to int.
 }
 
 Code getEditCode(HWND hwnd, strList lines) {
@@ -24,7 +27,7 @@ Code getEditCode(HWND hwnd, strList lines) {
     if (isCodeValid(code)) {
         return code;
     }
-    return Code();
+    return Code(); //empty code object because entered parameters are invalid
 }
 
 bool isCodeValid(Code code) {
@@ -70,10 +73,12 @@ bool isCodeValid(Code code) {
 
 Vulnerability getEditVuln(HWND hwnd, codeList codes) {
     std::string name = getEditString(hwnd, IDC_VULNNAME);
-    if (codes.size() == 0) {
-        printError("Cannot create a vulnerability without code objects");
-        return Vulnerability();
+    if (codes.size() != 0) {
+        //makes sure the vulnerability actually has code to change
+        Vulnerability vuln(name, codes);
+        return vuln;
     }
-    Vulnerability vuln(name, codes);
-    return vuln;
+    
+    printError("Cannot create a vulnerability without code objects");
+    return Vulnerability(); //returns empty Vulnerability object in case of error
 }

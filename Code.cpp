@@ -47,34 +47,46 @@ bool Code::changeCode()
 	std::string line;
 	if (file.is_open()) {
 		while (std::getline(file, line)) {
-			lines.push_back(line);
+			lines.push_back(line); 
+			//this will copy the file into a list of strings. 
+			//each string is a line in the original file.
+			//doing this will make it easier to change the
+			//contents of the file
 		}
 		file.close();
 	}
 	else {
+		//in case file was not found display errors
 		printError("ERROR: cannot open file " + this->filePath + " for reading");
 		return false;
 	}
 	
 
 	int thisLinesCount = 0;
-	if (beginChar != 0 && endLine == beginLine) { //doesnt change the whole line but only changes one line
-		if (endChar == 0) {						  // changes until the end of the line
+	if (beginChar != 0 && endLine == beginLine) { 
+		//doesnt change the whole line but only changes one line
+		if (endChar == 0) {	
+			//changes until the end of the line
 			lines[beginLine - 1].replace(this->beginChar, lines[beginLine - 1].size() - beginChar, this->lines[0]);
 		}
-		else { // dont change the whole line
+		else { 
+			// dont change the whole line
 			lines[beginLine - 1].replace(this->beginChar, endChar - beginChar, this->lines[0]);
 		}
 	}
-	else if (beginChar == 0 && endLine == beginLine) { //changes only the first line and fully
-		if (endChar == 0) {							   // changes until the end of the line
+	else if (beginChar == 0 && endLine == beginLine) { 
+		//changes only the first line and fully
+		if (endChar == 0) {							  
+			// changes until the end of the line
 			lines[beginLine - 1].replace(0, lines[beginLine - 1].size(), this->lines[0]);
 		}
-		else { // dont change the whole line
+		else { 
+			// dont change the whole line
 			lines[beginLine - 1].replace(0, endChar - beginChar, this->lines[0]);
 		}
 	}
-	else if (beginChar != 0 && endChar != 0 && beginLine < endLine) { //changes multiple lines, first and last not fully
+	else if (beginChar != 0 && endChar != 0 && beginLine < endLine) { 
+		//changes multiple lines, first and last not fully
 		lines[beginLine - 1].replace(this->beginChar, lines[beginLine - 1].size() - beginChar, this->lines[0]);
 		lines[endLine - 1].replace(0, endChar, this->lines[this->lines.size() - 1]);
 		thisLinesCount++;
@@ -83,7 +95,8 @@ bool Code::changeCode()
 			thisLinesCount++;
 		}
 	}
-	else if (beginChar != 0 && beginLine < endLine) { //doesnt change the whole first line and changes more than one line
+	else if (beginChar != 0 && beginLine < endLine) { 
+		//doesnt change the whole first line and changes more than one line
 		lines[beginLine - 1].replace(this->beginChar, lines[beginLine - 1].size() - beginChar, this->lines[0]);
 		thisLinesCount++;
 		for (int i = beginLine; i < endLine; i++) {
@@ -91,14 +104,17 @@ bool Code::changeCode()
 			thisLinesCount++;
 		}
 	}
-	else if (beginLine < endLine && endChar != 0) { //changes the whole first line and changes more than one line and last line doesnt change all
-		lines[endLine - 1].replace(0, endChar, this->lines[this->lines.size() - 1]);
+	else if (beginLine < endLine && endChar != 0) { 
+		//changes the whole first line and changes more than one line
+		//and last line doesnt change all
+		lines[endLine - 1].replace(0, endChar, this->lines[this->lines.size() - 1]); 
 		for (int i = beginLine - 1; i < endLine - 1; i++) {
 			lines[i].replace(0, lines[i].size(), this->lines[thisLinesCount]);
 			thisLinesCount++;
 		}
 	}
-	else if (beginLine < endLine && endChar == 0) {//changes only full lines and more than 1
+	else if (beginLine < endLine && endChar == 0) {
+		//changes only full lines and more than 1
 		for (int i = beginLine - 1; i < endLine; i++) {
 			lines[i].replace(0, lines[i].size(), this->lines[thisLinesCount]);
 			thisLinesCount++;
@@ -110,10 +126,13 @@ bool Code::changeCode()
 	if (output.is_open()) {
 		for (auto line : lines) {
 			output << line << '\n';
+			//write back to the original file the changed contents of the file.
+			//the file's code has now been changed according to what the Code object specified.
 		}
 		output.close();
 	}
 	else {
+		//in case file was not found display errors
 		printError("ERROR: cannot open file " + this->filePath + " for writing");
 		return false;
 	}

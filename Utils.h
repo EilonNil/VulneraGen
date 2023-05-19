@@ -1,5 +1,4 @@
 #pragma once
-#include <Windows.h>
 #include "Code.h"
 typedef std::vector<std::string> strList;
 

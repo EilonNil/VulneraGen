@@ -7,7 +7,7 @@ typedef std::vector<Code> codeList;
 class Project
 {
 private:
-	std::string Projectpath;
+	std::string projectPath;
 	std::string vulnPath;
 	vulnList newVulns;
 public:
@@ -18,5 +18,6 @@ public:
 	bool runProject(std::vector<bool> vulnArr);
 	bool changeBack(const vulnList& vulns);
 	bool initalize(const vulnList& vulns);
+	~Project();
 };
 

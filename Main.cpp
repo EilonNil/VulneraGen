@@ -1,6 +1,5 @@
 #include "Tooltip.h"
 #include "UserVulnerability.h"
-#include <iostream>
 bool xss = false;
 bool sqlI = false;
 bool unvalidated = false;
@@ -21,10 +20,8 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     {
     case WM_INITDIALOG:
     {
-        Tooltip vulnButton(hwnd, IDC_NEWVULN, "Use all the code objects created since last click");
-        Tooltip codeButton(hwnd, IDC_NEWCODE, "Create a code object using all code lines since last click and other parameters");
-        Tooltip addCodeButton(hwnd, IDC_CODEBTN, "will add to the list of code lines that will be used to create next code object");
-        Tooltip createButtom(hwnd, IDC_BUTTON, "Create the website with chosen and user-added vulnerabilities protected");
+        initiate(hwnd); //creates tooltips for relevant buttons
+        //printIntro(); //prints notepad intro to the system
     }
     break;
     case WM_COMMAND:
@@ -51,7 +48,7 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         case IDC_BUTTON:
         {
-            printIntro();
+            printScan();
 
             std::vector<bool> chosenVulns;
             chosenVulns.push_back(xss);
@@ -69,6 +66,8 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         {
             std::string line = getEditString(hwnd, IDC_CODE);
             linesOfCode.push_back(line);
+            //list that represents inputted lines of code
+            //since last code object was created.
             break;
         }
         case IDC_NEWCODE:
@@ -76,6 +75,10 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             Code code = getEditCode(hwnd, linesOfCode);
             if (code.getFilePath() != "null") {
                 codes.push_back(code);
+                //list that represents inputted code objects
+                //since last vulnerability was created.
+                linesOfCode = strList(); 
+                //empty the list.
             }
             break;
         }
@@ -84,7 +87,36 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             Vulnerability vuln = getEditVuln(hwnd, codes);
             if (vuln.getCodes().size() != 0) {
                 newVulns.push_back(vuln);
+                //list that represents all vulnerabilities
+                //inputted by the user
+                codes = codeList(); 
+                //empty the list.
             }
+            break;
+        }
+        case IDC_XSSMORE:
+        {
+            MessageBoxA(NULL, "test", "XSS explanation", MB_OK);
+            break;
+        }
+        case IDC_SQLIMORE:
+        {
+            MessageBoxA(NULL, "test", "SQL Injection explanation", MB_OK);
+            break;
+        }
+        case IDC_REDIRECTMORE:
+        {
+            MessageBoxA(NULL, "test", "Unvalidated Redirects explanation", MB_OK);
+            break;
+        }
+        case IDC_TAMPERMORE:
+        {
+            MessageBoxA(NULL, "test", "Product Tampering explanation", MB_OK);
+            break;
+        }
+        case IDC_ADMINMORE:
+        {
+            MessageBoxA(NULL, "test", "Admin Registration explanation", MB_OK);
             break;
         }
         case IDC_CANCEL:

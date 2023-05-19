@@ -21,7 +21,11 @@
 #define IDC_ENDCHAR                     1015
 #define IDC_NEWVULN                     1016
 #define IDC_CODEBTN                     1017
-#define IDC_BUTTON1                     1018
+#define IDC_XSSMORE                     1018
+#define IDC_SQLIMORE                    1019
+#define IDC_TAMPERMORE                  1020
+#define IDC_ADMINMORE                   1021
+#define IDC_REDIRECTMORE                1022
 
 // Next default values for new objects
 // 

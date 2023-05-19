@@ -1,8 +1,6 @@
 #pragma once
-#include <iostream>
 #include <vector>
 #include <fstream>
-#include <sstream>
 #include <string>
 #include "NotepadPrinting.h"
 typedef std::vector<std::string> strList;
@@ -20,8 +18,8 @@ private:
 public:
 	Code();
 	Code(const std::string filePath, const int beginLine, const int beginChar, const int endLine, const int endChar, const std::vector<std::string> lines);
-	Code(const Code& other);
 	const Code& operator=(const Code& other);
+	Code(const Code& other);
 	bool changeCode();
 	std::string getFilePath();
 	strList codeToLst();

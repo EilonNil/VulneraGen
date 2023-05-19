@@ -1,6 +1,11 @@
 #include "NotepadPrinting.h"
 
 void printIntro() {
+	std::string message = "This notepad application was opened remotely by this program.\nIt will display the phases of defending the website, errors, and other useful information\n";
+	printNotepadMsg(getDLLPath(), message);
+}
+
+void printScan() {
 	std::string line1 = "Scanning for vulnerabilities...\n";
 	printNotepadMsg(getDLLPath(), line1);
 	std::string tripDot = "...\n";
