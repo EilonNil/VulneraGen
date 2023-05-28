@@ -84,3 +84,79 @@ Vulnerability getEditVuln(HWND hwnd, codeList codes) {
     printError("Cannot create a vulnerability without code objects");
     return Vulnerability(); //returns empty Vulnerability object in case of error
 }
+
+std::string linesIntoJson(strList lines) {
+    std::string retLines = "\"Code\": [\n";
+    for (int i = 0; i < lines.size(); i++) {
+        retLines += "{\n\"line\": \"" + lines[i] + "\"\n}";
+        if (i < lines.size() - 1) {
+            //if the line is not the last one, it ends with a ","
+            retLines += ",";
+        }
+        retLines += "\n";
+    }
+    retLines += "]\n";
+    return retLines;
+}
+
+std::string codeIntoJson(Code code) {
+    std::string retLines = "{\n";
+    retLines += "\"File Path\": \"" + code.getFilePath() + "\",\n";
+    retLines += "\"Begin Line\": \"" + std::to_string(code.beginLine) + "\",\n";
+    retLines += "\"Begin Char\": \"" + std::to_string(code.beginChar) + "\",\n";
+    retLines += "\"End Line\": \"" + std::to_string(code.endLine) + "\",\n";
+    retLines += "\"End Char\": \"" + std::to_string(code.endChar) + "\",\n";
+    retLines += linesIntoJson(code.lines);
+    retLines += "}\n";
+    return retLines;
+}
+
+std::string codesIntoJson(codeList codes) {
+    std::string retLines = "\"Codes\": [\n";
+    for (int i = 0; i < codes.size(); i++) {
+        retLines += codeIntoJson(codes[i]);
+        if (i < codes.size() - 1) {
+            //if the line is not the last one, it ends with a ","
+            retLines += ",";
+        }
+        retLines += "\n";
+    }
+    retLines += "]\n";
+    return retLines;
+}
+
+std::string vulnIntoJson(Vulnerability vuln) {
+    std::string retLines = "{\n";
+    retLines += "\"Name\": \"" + vuln.getName() + "\",\n";
+    retLines += codesIntoJson(vuln.getCodes());
+    retLines += "}\n";
+    return retLines;
+}
+
+bool VulnsIntoJson(vulnList vulns, std::string path) {
+    std::string retLines = "{\n\"Vulnerabilities\": [\n";
+    for (int i = 0; i < vulns.size(); i++) {
+        retLines += vulnIntoJson(vulns[i]);
+        if (i < vulns.size() - 1) {
+            //if the line is not the last one, it ends with a ","
+            retLines += ",";
+        }
+        retLines += "\n";
+    }
+    retLines += "]\n}";
+    return writeToJson(retLines, path);
+}
+
+bool writeToJson(std::string content, std::string path) {
+    std::ofstream output(path);
+    if (output.is_open()) {
+        output << content;
+        output.close();
+    }
+    else {
+        //in case file was not found display errors
+        printError("ERROR: cannot open file " + path + " for writing");
+        return false;
+    }
+    return true;
+}

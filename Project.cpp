@@ -1,9 +1,10 @@
 #include "Project.h"
 
-Project::Project(const std::string& projectPath, const std::string& vulnsPath, const vulnList& newVulns) {
+Project::Project(const std::string& projectPath, const std::string& vulnsPath, const vulnList& newVulns, const std::string& userJsonPath) {
 	this->projectPath = projectPath;
 	this->vulnPath = vulnsPath;
 	this->newVulns = newVulns;
+	this->userJsonPath = userJsonPath;
 }
 
 bool Project::runProject(std::vector<bool> vulnArr) {
@@ -47,6 +48,7 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 		retVulns.push_back(item);
 		printVuln(item.toString());
 	}
+	VulnsIntoJson(this->newVulns, this->userJsonPath);
 
 	if (retVulns.size() != 0) {
 		finishedScan();
@@ -90,6 +92,11 @@ bool Project::changeBack(const vulnList& vulns) {
 	}
 	deleteFiles(oldList);
 	//delete all the "old" files so the project can run again smoothly.
+	if (doesExist(this->userJsonPath)) {
+		deleteFile(this->userJsonPath);
+	}
+	//deletes the json with the user vulnerability so the program will
+	//know in the next run that all the code was restored successfully
 
 	return true;
 }
@@ -120,9 +127,15 @@ bool Project::initalize(const vulnList& vulns) {
 		}
 		unintialized = false;
 	}
+	bool userSuccess = true;
+	if (doesExist(this->userJsonPath)) {
+		userSuccess = changeBack(convert(this->userJsonPath));
+	}
 	bool success = changeBack(uninitalizedList);
 	//calls the changeBack function with all the vulnerabilities that
 	//not changed back in the last run of the project
+
+
 	return success;
 }
 

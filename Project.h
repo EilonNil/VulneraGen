@@ -1,5 +1,5 @@
 #pragma once
-#include "Json.h"
+#include "UserVulnerability.h"
 typedef std::vector<Vulnerability> vulnList;
 typedef std::vector<std::string> strList;
 typedef std::vector<Code> codeList;
@@ -10,8 +10,9 @@ private:
 	std::string projectPath;
 	std::string vulnPath;
 	vulnList newVulns;
+	std::string userJsonPath;
 public:
-	Project(const std::string& ProjectPath, const std::string& vulnsPath, const vulnList& newVulns);
+	Project(const std::string& ProjectPath, const std::string& vulnsPath, const vulnList& newVulns, const std::string& userJsonPath);
 	vulnList readVulns();
 	vulnList chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr);
 	bool createProject(const vulnList& vulns);

@@ -1,5 +1,5 @@
 #include "Tooltip.h"
-#include "UserVulnerability.h"
+#include "Project.h"
 bool xss = false;
 bool sqlI = false;
 bool unvalidated = false;
@@ -8,6 +8,7 @@ bool admin = false;
 std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master";
 //std::string path = "C:\\Users\\Eilon\\Downloads\\juice-shop-master\\juice-shop-master"; //secondary path
 std::string vulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json";
+std::string userVulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\UserVulnerabilities.json";
 //std::string dllPath = "C:\\Users\\Eilon\\source\\repos\\FinalProjectYudBet\\x64\\Debug\\Dll.dll";
 std::vector<std::string> linesOfCode;
 std::vector<Code> codes;
@@ -56,7 +57,7 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             chosenVulns.push_back(unvalidated);
             chosenVulns.push_back(product);
             chosenVulns.push_back(admin);
-            Project project(path, vulnsPath, newVulns);
+            Project project(path, vulnsPath, newVulns, userVulnsPath);
             bool success = project.runProject(chosenVulns);
 
             DestroyWindow(hwnd);
