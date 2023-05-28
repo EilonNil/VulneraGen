@@ -95,6 +95,9 @@ bool Project::changeBack(const vulnList& vulns) {
 }
 
 bool Project::initalize(const vulnList& vulns) {
+	if (vulns.size() == 0) {
+		return false;
+	}
 	vulnList uninitalizedList;
 	bool unintialized = false;
 	for (auto vuln : vulns) {

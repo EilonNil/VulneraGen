@@ -10,7 +10,15 @@ vulnList convert(const std::string& vulnsPath) {
 	}
 	vulnList retList;
 
-	json data = json::parse(file);
+	json data;
+	try {
+		data = json::parse(file);
+	}
+	catch (...) {
+		printError("ERROR: invalid JSON file " + vulnsPath);
+		return vulnList();
+	}
+
 	//the json object "data" will act like a
 	//special list that represents the data 
 	//inside the json.
