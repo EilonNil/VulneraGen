@@ -18,12 +18,14 @@ int getEditInt(HWND hwnd, int item) {
 }
 
 Code getEditCode(HWND hwnd, strList lines) {
+    std::string basePath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master\\";
     std::string filePath = getEditString(hwnd, IDC_PATH);
+    std::string fullPath = basePath + filePath;
     int beginLine = getEditInt(hwnd, IDC_BEGINLINE);
     int beginChar = getEditInt(hwnd, IDC_BEGINCHAR);
     int endLine = getEditInt(hwnd, IDC_ENDLINE);
     int endChar = getEditInt(hwnd, IDC_ENDCHAR);
-    Code code(filePath, beginLine, beginChar, endLine, endChar, lines);
+    Code code(fullPath, beginLine, beginChar, endLine, endChar, lines);
     if (isCodeValid(code)) {
         return code;
     }

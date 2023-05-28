@@ -21,7 +21,7 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_INITDIALOG:
     {
         initiate(hwnd); //creates tooltips for relevant buttons
-        //printIntro(); //prints notepad intro to the system
+        printIntro(); //prints notepad intro to the system
     }
     break;
     case WM_COMMAND:

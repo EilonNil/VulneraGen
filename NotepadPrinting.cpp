@@ -1,7 +1,7 @@
 #include "NotepadPrinting.h"
 
 void printIntro() {
-	std::string message = "This notepad application was opened remotely by this program.\nIt will display the phases of defending the website, errors, and other useful information\n";
+	std::string message = "This notepad application was opened remotely by this program.\nIt will display the phases of defending the website, errors, and other useful information.\n";
 	printNotepadMsg(getDLLPath(), message);
 }
 
@@ -40,7 +40,7 @@ void noVulns() {
 
 void websiteClosed() {
 	Sleep(500);
-	std::string message = "\nwebsite has been closed. original code has been restored\n";
+	std::string message = "\nwebsite has been closed. original code has been restored.\n";
 	printNotepadMsg(getDLLPath(), message);
 	Sleep(123);
 }

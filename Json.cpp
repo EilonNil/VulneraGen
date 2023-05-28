@@ -35,7 +35,7 @@ codeList codesGenerator(json codes) {
 }
 
 Code singleCodeGenerator(json code) {
-	std::string basePath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\";
+	std::string basePath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master\\";
 	std::string filePath = code["File Path"];
 	std::string fullPath = basePath + filePath;
 	//get the full file path.
