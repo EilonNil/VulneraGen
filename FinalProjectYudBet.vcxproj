@@ -153,6 +153,7 @@
     <ClInclude Include="UserVulnerability.h" />
     <ClInclude Include="Utils.h" />
     <ClInclude Include="Vulnerability.h" />
+    <ClInclude Include="VulnerabilityExplanations.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Resource.rc" />

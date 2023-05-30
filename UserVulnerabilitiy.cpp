@@ -36,7 +36,7 @@ bool isCodeValid(Code code) {
     bool valid = true;
     if (!doesExist(code.getFilePath())) {
         valid = false;
-        printError("File path is invalid. File does not exist");
+        printError("File path " + code.getFilePath() + " is invalid.File does not exist");
     }
     if (code.beginLine <= 0) {
         valid = false;
@@ -101,6 +101,7 @@ std::string linesIntoJson(strList lines) {
 
 std::string codeIntoJson(Code code) {
     std::string retLines = "{\n";
+    //convert all the attributes into a json string
     retLines += "\"File Path\": \"" + code.getFilePath() + "\",\n";
     retLines += "\"Begin Line\": \"" + std::to_string(code.beginLine) + "\",\n";
     retLines += "\"Begin Char\": \"" + std::to_string(code.beginChar) + "\",\n";
@@ -127,6 +128,7 @@ std::string codesIntoJson(codeList codes) {
 
 std::string vulnIntoJson(Vulnerability vuln) {
     std::string retLines = "{\n";
+    //convert all the attributes into a json string
     retLines += "\"Name\": \"" + vuln.getName() + "\",\n";
     retLines += codesIntoJson(vuln.getCodes());
     retLines += "}\n";
@@ -149,6 +151,8 @@ bool VulnsIntoJson(vulnList vulns, std::string path) {
 
 bool writeToJson(std::string content, std::string path) {
     std::ofstream output(path);
+    //write to the json path, which does not exist so it will make
+    //a new JSON file
     if (output.is_open()) {
         output << content;
         output.close();

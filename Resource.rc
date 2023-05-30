@@ -71,7 +71,7 @@ BEGIN
     EDITTEXT        IDC_ENDCHAR,305,145,106,17,ES_AUTOHSCROLL
     EDITTEXT        IDC_CODE,254,171,106,17,ES_AUTOHSCROLL
     LTEXT           "Create your own vulnerability to protect",IDC_STATIC,241,15,135,8
-    LTEXT           "File path",IDC_STATIC,217,42,65,13
+    LTEXT           "Relative file path",IDC_STATIC,217,42,65,13
     LTEXT           "Start line",IDC_STATIC,217,71,65,13
     LTEXT           "End line",IDC_STATIC,217,129,65,13
     LTEXT           "Start char (0 is from the beggining)",IDC_STATIC,217,100,80,16
@@ -84,7 +84,7 @@ BEGIN
     LTEXT           "Preset vulnerabilities to protect",IDC_STATIC,34,14,101,9
     PUSHBUTTON      "Read More",IDC_XSSMORE,128,36,52,28
     PUSHBUTTON      "Read More",IDC_SQLIMORE,128,96,52,28
-    PUSHBUTTON      "Read More", IDC_REDIRECTMORE,128,156,52,28
+    PUSHBUTTON      "Read More",IDC_REDIRECTMORE,128,156,52,28
     PUSHBUTTON      "Read More",IDC_TAMPERMORE,128,216,52,28
     PUSHBUTTON      "Read More",IDC_ADMINMORE,128,276,52,28
 END

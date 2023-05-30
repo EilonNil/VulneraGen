@@ -1,15 +1,14 @@
 #include "Tooltip.h"
 #include "Project.h"
+#include "VulnerabilityExplanations.h"
 bool xss = false;
 bool sqlI = false;
 bool unvalidated = false;
 bool product = false;
 bool admin = false;
 std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master";
-//std::string path = "C:\\Users\\Eilon\\Downloads\\juice-shop-master\\juice-shop-master"; //secondary path
 std::string vulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json";
 std::string userVulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\UserVulnerabilities.json";
-//std::string dllPath = "C:\\Users\\Eilon\\source\\repos\\FinalProjectYudBet\\x64\\Debug\\Dll.dll";
 std::vector<std::string> linesOfCode;
 std::vector<Code> codes;
 std::vector<Vulnerability> newVulns;
@@ -97,27 +96,30 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         case IDC_XSSMORE:
         {
-            MessageBoxA(NULL, "test", "XSS explanation", MB_OK);
+            MessageBoxA(NULL, xssExp.c_str(), "XSS explanation", MB_OK);
             break;
         }
         case IDC_SQLIMORE:
         {
-            MessageBoxA(NULL, "test", "SQL Injection explanation", MB_OK);
+            MessageBoxA(NULL, sqliExp.c_str(), "SQL Injection explanation", MB_OK);
             break;
         }
         case IDC_REDIRECTMORE:
         {
-            MessageBoxA(NULL, "test", "Unvalidated Redirects explanation", MB_OK);
+            
+            MessageBoxA(NULL, redirExp.c_str(), "Unvalidated Redirects explanation", MB_OK);
             break;
         }
         case IDC_TAMPERMORE:
         {
-            MessageBoxA(NULL, "test", "Product Tampering explanation", MB_OK);
+            
+            MessageBoxA(NULL, tamperExp.c_str(), "Product Tampering explanation", MB_OK);
             break;
         }
         case IDC_ADMINMORE:
         {
-            MessageBoxA(NULL, "test", "Admin Registration explanation", MB_OK);
+            
+            MessageBoxA(NULL, adminExp.c_str(), "Admin Registration explanation", MB_OK);
             break;
         }
         case IDC_CANCEL:
