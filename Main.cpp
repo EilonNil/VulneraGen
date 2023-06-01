@@ -6,7 +6,7 @@ bool sqlI = false;
 bool unvalidated = false;
 bool product = false;
 bool admin = false;
-std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master";
+std::string path = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\juice-shop-master"; //base path
 std::string vulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\Vulnerabilities.json";
 std::string userVulnsPath = "C:\\Users\\Eilon\\Documents\\YudBetFinalProject\\UserVulnerabilities.json";
 std::vector<std::string> linesOfCode;
@@ -21,7 +21,7 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
     case WM_INITDIALOG:
     {
         initiate(hwnd); //creates tooltips for relevant buttons
-        //printIntro(); //prints notepad intro to the system
+        printIntro(); //prints notepad intro to the system
     }
     break;
     case WM_COMMAND:
@@ -57,7 +57,11 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             chosenVulns.push_back(product);
             chosenVulns.push_back(admin);
             Project project(path, vulnsPath, newVulns, userVulnsPath);
-            bool success = project.runProject(chosenVulns);
+            project.runProject(chosenVulns);
+            //create the project object and run the project itself
+            //after the user has inputted all the vulnerabilities
+            //to protect. after the project is finished running
+            //close the window.
 
             DestroyWindow(hwnd);
             break;
@@ -88,7 +92,7 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             if (vuln.getCodes().size() != 0) {
                 newVulns.push_back(vuln);
                 //list that represents all vulnerabilities
-                //inputted by the user
+                //inputted by the user.
                 codes = codeList(); 
                 //empty the list.
             }
@@ -152,5 +156,6 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
 int WINAPI wWinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, PWSTR lpCmdLine, int nCmdShow)
 {
     connectDLL(getDLLPath());
+    //inject the DLL into notepad.
     return DialogBox(hInstance, MAKEINTRESOURCE(IDD_FORM), NULL, DlgProc);
 }

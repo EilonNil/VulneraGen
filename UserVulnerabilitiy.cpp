@@ -36,7 +36,7 @@ bool isCodeValid(Code code) {
     bool valid = true;
     if (!doesExist(code.getFilePath())) {
         valid = false;
-        printError("File path " + code.getFilePath() + " is invalid.File does not exist");
+        printError("File path " + code.getFilePath() + " is invalid. File does not exist");
     }
     if (code.beginLine <= 0) {
         valid = false;

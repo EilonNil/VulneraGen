@@ -24,6 +24,7 @@ public:
 	std::string getFilePath();
 	strList codeToLst();
 	~Code();
+
 	friend bool isCodeValid(Code code);
 	friend std::string codeIntoJson(Code code);
 };

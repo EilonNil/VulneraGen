@@ -8,28 +8,39 @@ Project::Project(const std::string& projectPath, const std::string& vulnsPath, c
 }
 
 bool Project::runProject(std::vector<bool> vulnArr) {
-	vulnList vulns = readVulns();
+	//reads from the JSON the preset vulnerabilities.
+	vulnList vulns = readVulns(); 
+	//checks if last run crashed and deals with it
+	//if the run did.
   	bool initSuccess = initalize(vulns);
 	if (!initSuccess) {
 		return false;
 	}
+	//returns the full list of vulnerabilites the system
+	//wil protect.
 	vulnList chosenVulns = chooseVulns(vulns, vulnArr);
+	//protects the chosen vulnerabilities.
 	bool success = createProject(chosenVulns);
 	if (!success) {
 		return false;
 	}
+	//run the website
 	std::string command = "cd " + this->projectPath + " & npm start";
 	std::system(command.c_str());
+	//change back to the original code.
 	bool changeSucess = changeBack(chosenVulns);
 	if (!changeSucess) {
 		return false;
 	}
+	//display end message
 	websiteClosed();
 	return true;
 }
 
 vulnList Project::readVulns() {
 	vulnList vulns;
+	//call the function inside Json.cpp that will
+	//parse the JSON file.
 	vulns = convert(vulnPath);
 	return vulns;
 }
@@ -37,6 +48,8 @@ vulnList Project::readVulns() {
 vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 {
 	vulnList retVulns;
+	//synchronize between the list of booleans from the user
+	//and the list of vulnerabilities from the JSON.
 	for (int i = 0; i < vulnArr.size(); i++) {
 		if (vulnArr[i]) {
 			retVulns.push_back(vulns[i]);
@@ -44,10 +57,12 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 			printVuln(vuln.toString());
 		}
 	}
+	//add the user generated vulnerabilities.
 	for (auto item : this->newVulns) {
 		retVulns.push_back(item);
 		printVuln(item.toString());
 	}
+	//make the user vulns into a json in case of crash.
 	VulnsIntoJson(this->newVulns, this->userJsonPath);
 
 	if (retVulns.size() != 0) {
@@ -62,6 +77,7 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 
 bool Project::createProject(const vulnList& vulns)
 {
+	//protect the chosen vulnerabilities.
 	for (auto vuln : vulns) {
 		bool success = vuln.changeCodes();
 		if (!success) {

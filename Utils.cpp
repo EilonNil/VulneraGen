@@ -2,6 +2,7 @@
 
 bool isIn(std::vector<std::string> list, std::string newPath)
 {
+	//is chosen string inside the list
 	for (auto path : list) {
 		if (path == newPath) {
 			return true;
@@ -33,6 +34,7 @@ bool moveCode(std::string to, std::string from)
 }
 
 bool doesExist(std::string path) {
+	//does the file exist
 	std::ifstream check(path);
 	return check.is_open();
 }

@@ -141,6 +141,8 @@ bool Code::changeCode()
 
 strList Code::codeToLst() {
 	strList attributes;
+	//put the important attributes needed to display the
+	//code object in the notepad into a list
 	attributes.push_back(this->filePath);
 	attributes.push_back(std::to_string(this->beginLine));
 	attributes.push_back(std::to_string(this->beginChar));
