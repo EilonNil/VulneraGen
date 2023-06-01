@@ -1,0 +1,132 @@
+{
+"Vulnerabilities": [
+	{
+		"Name": "XSS",
+		"Codes": [ 
+		{
+			"File Path": "frontend\\dist\\frontend\\main.js",
+			"Begin Line": 1,
+			"Begin Char": 90810,
+			"End Line": 1,
+			"End Char": 90869,
+			"Code": [
+			{
+				"line": "this.searchValue=(e),"
+			}
+			]
+		},
+		{
+			"File Path": "frontend\\dist\\frontend\\main.js",
+			"Begin Line": 1,
+			"Begin Char": 90299,
+			"End Line": 1,
+			"End Char": 90427,
+			"Code": [
+			{
+				"line": ""
+			}
+			]
+		},
+		{
+			"File Path": "frontend\\dist\\frontend\\main.js",
+			"Begin Line": 1,
+			"Begin Char": 89237,
+			"End Line": 1,
+			"End Char": 89269,
+			"Code": [
+			{
+				"line": ""
+			}
+			]
+		}
+		]
+	},
+	
+	{
+		"Name": "SQL Injection",
+		"Codes": [ 
+		{
+			"File Path": "build\\routes\\login.js",
+			"Begin Line": 32,
+			"Begin Char": 0,
+			"End Line": 32,
+			"End Char": 0,
+			"Code": [
+			{
+				"line": "models.sequelize.query(`SELECT * FROM Users WHERE email = $1 AND password = $2 AND deletedAt IS NULL`, { bind: [ req.body.email, security.hash(req.body.password) ], model: models.User, plain: true })"
+			}
+			]
+		},
+		{
+			"File Path": "build\\routes\\search.js",
+			"Begin Line": 20,
+			"Begin Char": 0,
+			"End Line": 20,
+			"End Char": 0,
+			"Code": [
+			{
+				"line": "models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%:criteria%' OR description LIKE '%:criteria%') AND deletedAt IS NULL) ORDER BY name`, { replacements: { criteria } })"
+			}
+			]
+		}
+		]
+	},
+	
+	{
+		"Name": "Unvalidated Redirects",
+		"Codes": [
+		{
+			"File Path": "build\\lib\\insecurity.js",
+			"Begin Line": 111,
+			"Begin Char": 0,
+			"End Line": 111,
+			"End Char": 0,
+			"Code": [
+			{
+				"line": "allowed = allowed || url === allowedUrl;"
+			}
+			]
+		}
+		]
+	},
+	
+	{
+		"Name": "Product Tampering",
+		"Codes": [
+		{
+			"File Path": "build\\server.js",
+			"Begin Line": 305,
+			"Begin Char": 0,
+			"End Line": 306,
+			"End Char": 0,
+			"Code": [
+			{ 
+				"line": "app.post('/api/Products', security.denyAll());" 
+			},
+			{
+				"line": "app.put('/api/Products/:id', security.denyAll());"
+			}
+			]
+		}
+		]
+	},
+	
+	{
+		"Name": "Admin Registration",
+		"Codes": [
+		{
+			"File Path": "build\\server.js",
+			"Begin Line": 413,
+			"Begin Char": 0,
+			"End Line": 413,
+			"End Char": 0,
+			"Code": [
+			{ 
+				"line": "context.instance.role = 'customer'; return context.continue;" 
+			}
+			]
+		}
+		]
+	}
+]
+}
