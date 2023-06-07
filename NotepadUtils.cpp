@@ -13,12 +13,9 @@ void connectDLL(std::string dllPath) {
     }
     Sleep(1000);
 
-    HWND nphwnd = FindWindowA("Notepad", NULL);
-    //get the HWND of the notepad window.
     notepadprocID = processInfo.dwProcessId;
     //get the proc id of the notepad that was opened.
 
-    GetWindowThreadProcessId(nphwnd, &notepadprocID);
     HANDLE newhwnd = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_VM_WRITE | PROCESS_ALL_ACCESS | PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, false, notepadprocID);
     //get access to the process.
     if (newhwnd == NULL) {
