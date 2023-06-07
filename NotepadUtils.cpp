@@ -15,10 +15,11 @@ void connectDLL(std::string dllPath) {
 
     HWND nphwnd = FindWindowA("Notepad", NULL);
     //get the HWND of the notepad window.
-    DWORD procid = GetProcessId(nphwnd);
-    //get the process ID of the notepad application using it's HWND.
-    GetWindowThreadProcessId(nphwnd, &procid);
-    HANDLE newhwnd = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_VM_WRITE | PROCESS_ALL_ACCESS | PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, false, procid);
+    notepadprocID = processInfo.dwProcessId;
+    //get the proc id of the notepad that was opened.
+
+    GetWindowThreadProcessId(nphwnd, &notepadprocID);
+    HANDLE newhwnd = OpenProcess(PROCESS_CREATE_THREAD | PROCESS_VM_WRITE | PROCESS_ALL_ACCESS | PROCESS_VM_READ | PROCESS_QUERY_INFORMATION, false, notepadprocID);
     //get access to the process.
     if (newhwnd == NULL) {
         std::cout << "Error: no window \'Notepad\' " << GetLastError() << std::endl;
@@ -38,20 +39,29 @@ void connectDLL(std::string dllPath) {
     size_t written = 0;
     WriteProcessMemory(newhwnd, allocated, dllPath.data(), dllPath.size(), &written);
     //write inside the allocated memory the DLL path.
-    CreateRemoteThread(newhwnd, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA, allocated, 0, &procid);
+    DWORD newProcID = notepadprocID;
+    CreateRemoteThread(newhwnd, NULL, 0, (LPTHREAD_START_ROUTINE)LoadLibraryA, allocated, 0, &newProcID);
     //make a thread that loads the DLL into notepad.
+
 }
 
 
 void printNotepadMsg(std::string dllPath, std::string message) {
+    HANDLE processHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, notepadprocID);
+    //check twice incase notepad has been edited (name changes)
+    DWORD exitCode;
+    if (GetExitCodeProcess(processHandle, &exitCode) && exitCode != STILL_ACTIVE) {
+        connectDLL(getDLLPath());
+    }
+
 	HINSTANCE hDLL = LoadLibrary(TEXT(dllPath.c_str()));
     //get access to the functions of the DLL
 
-	typedef VOID(*PrintMessageFunc)(std::string);
+	typedef VOID(*PrintMessageFunc)(std::string, DWORD);
 	PrintMessageFunc lpfnPrintMessage = reinterpret_cast<PrintMessageFunc>(GetProcAddress(hDLL, "printMessage"));
     //get the function itself from the DLL
 
-	lpfnPrintMessage(message);
+	lpfnPrintMessage(message, notepadprocID);
 
 	FreeLibrary(hDLL);
 }

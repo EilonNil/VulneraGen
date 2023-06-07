@@ -17,9 +17,9 @@ bool Project::runProject(std::vector<bool> vulnArr) {
 		return false;
 	}
 	//returns the full list of vulnerabilites the system
-	//wil protect.
+	//wil insert.
 	vulnList chosenVulns = chooseVulns(vulns, vulnArr);
-	//protects the chosen vulnerabilities.
+	//inserts the chosen vulnerabilities.
 	bool success = createProject(chosenVulns);
 	if (!success) {
 		return false;
@@ -77,7 +77,7 @@ vulnList Project::chooseVulns(const vulnList& vulns, std::vector<bool> vulnArr)
 
 bool Project::createProject(const vulnList& vulns)
 {
-	//protect the chosen vulnerabilities.
+	//insert the chosen vulnerabilities.
 	for (auto vuln : vulns) {
 		bool success = vuln.changeCodes();
 		if (!success) {
@@ -129,7 +129,7 @@ bool Project::initalize(const vulnList& vulns) {
 			if (doesExist(oldPath)) {
 				unintialized = true;
 				//found an "old" file.
-				//this means that this vulnerability was protected
+				//this means that this vulnerability was inserted
 				//but was not changed back at the end of the process.
 			}
 		}

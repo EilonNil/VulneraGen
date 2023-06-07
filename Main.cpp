@@ -60,7 +60,7 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
             project.runProject(chosenVulns);
             //create the project object and run the project itself
             //after the user has inputted all the vulnerabilities
-            //to protect. after the project is finished running
+            //to insert. after the project is finished running
             //close the window.
 
             DestroyWindow(hwnd);
