@@ -45,7 +45,8 @@ void connectDLL(std::string dllPath) {
 
 void printNotepadMsg(std::string dllPath, std::string message) {
     HANDLE processHandle = OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, notepadprocID);
-    //check twice incase notepad has been edited (name changes)
+    //check if the notepad that was used for communicating is closed
+    //and if it is open a new one.
     DWORD exitCode;
     if (GetExitCodeProcess(processHandle, &exitCode) && exitCode != STILL_ACTIVE) {
         connectDLL(getDLLPath());
