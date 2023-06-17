@@ -6,24 +6,24 @@
 		{
 			"File Path": "frontend\\dist\\frontend\\main.js",
 			"Begin Line": 1,
-			"Begin Char": 90810,
+			"Begin Char": 90650,
 			"End Line": 1,
-			"End Char": 90869,
+			"End Char": 90671,
 			"Code": [
 			{
-				"line": "this.searchValue=(e),"
+				"line": "this.searchValue=this.sanitizer.bypassSecurityTrustHtml(e),"
 			}
 			]
 		},
 		{
 			"File Path": "frontend\\dist\\frontend\\main.js",
 			"Begin Line": 1,
-			"Begin Char": 90299,
+			"Begin Char": 90267,
 			"End Line": 1,
-			"End Char": 90427,
+			"End Char": 90267,
 			"Code": [
 			{
-				"line": ""
+				"line": "trustProductDescription(e){for(let n=0;n<e.length;n++)e[n].description=this.sanitizer.bypassSecurityTrustHtml(e[n].description)}"
 			}
 			]
 		},
@@ -32,10 +32,10 @@
 			"Begin Line": 1,
 			"Begin Char": 89237,
 			"End Line": 1,
-			"End Char": 89269,
+			"End Char": 89237,
 			"Code": [
 			{
-				"line": ""
+				"line": ",this.trustProductDescription(r)"
 			}
 			]
 		}
@@ -53,7 +53,7 @@
 			"End Char": 0,
 			"Code": [
 			{
-				"line": "models.sequelize.query(`SELECT * FROM Users WHERE email = $1 AND password = $2 AND deletedAt IS NULL`, { bind: [ req.body.email, security.hash(req.body.password) ], model: models.User, plain: true })"
+				"line": "models.sequelize.query(`SELECT * FROM Users WHERE email = '${req.body.email || ''}' AND password = '${security.hash(req.body.password || '')}' AND deletedAt IS NULL`, { model: user_1.UserModel, plain: true })"
 			}
 			]
 		},
@@ -65,7 +65,7 @@
 			"End Char": 0,
 			"Code": [
 			{
-				"line": "models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%:criteria%' OR description LIKE '%:criteria%') AND deletedAt IS NULL) ORDER BY name`, { replacements: { criteria } })"
+				"line": "models.sequelize.query(`SELECT * FROM Products WHERE ((name LIKE '%${criteria}%' OR description LIKE '%${criteria}%') AND deletedAt IS NULL) ORDER BY name`)"
 			}
 			]
 		}
@@ -83,7 +83,7 @@
 			"End Char": 0,
 			"Code": [
 			{
-				"line": "allowed = allowed || url === allowedUrl;"
+				"line": "allowed = allowed || url.includes(allowedUrl);"
 			}
 			]
 		}
@@ -101,10 +101,10 @@
 			"End Char": 0,
 			"Code": [
 			{ 
-				"line": "app.post('/api/Products', security.denyAll());" 
+				"line": "app.post('/api/Products', security.isAuthorized());" 
 			},
 			{
-				"line": "app.put('/api/Products/:id', security.denyAll());"
+				"line": "//app.put('/api/Products/:id', security.isAuthorized());"
 			}
 			]
 		}
@@ -122,7 +122,7 @@
 			"End Char": 0,
 			"Code": [
 			{ 
-				"line": "context.instance.role = 'customer'; return context.continue;" 
+				"line": "return context.continue;" 
 			}
 			]
 		}
