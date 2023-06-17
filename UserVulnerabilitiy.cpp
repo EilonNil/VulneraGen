@@ -38,6 +38,11 @@ bool isCodeValid(Code code) {
         valid = false;
         printError("File path " + code.getFilePath() + " is invalid. File does not exist");
     }
+    if (code.getFilePath().find("../") != std::string::npos || code.getFilePath().find("..\\") != std::string::npos) {
+        //checks for path traversal attack to access files not in website.
+        valid = false;
+        printError("File Path " + code.getFilePath() + " is invalid. Please only change files within the website");
+    }
     if (code.beginLine <= 0) {
         valid = false;
         printError("Begin line cannot be smaller than or equal to 0");

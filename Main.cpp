@@ -81,9 +81,9 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
                 codes.push_back(code);
                 //list that represents inputted code objects
                 //since last vulnerability was created.
-                linesOfCode = strList(); 
-                //empty the list.
             }
+            linesOfCode = strList();
+            //empty the list.
             break;
         }
         case IDC_NEWVULN:
@@ -110,19 +110,16 @@ LRESULT CALLBACK DlgProc(HWND hwnd, UINT msg, WPARAM wParam, LPARAM lParam)
         }
         case IDC_REDIRECTMORE:
         {
-            
             MessageBoxA(NULL, redirExp.c_str(), "Unvalidated Redirects explanation", MB_OK);
             break;
         }
         case IDC_TAMPERMORE:
         {
-            
             MessageBoxA(NULL, tamperExp.c_str(), "Product Tampering explanation", MB_OK);
             break;
         }
         case IDC_ADMINMORE:
         {
-            
             MessageBoxA(NULL, adminExp.c_str(), "Admin Registration explanation", MB_OK);
             break;
         }
